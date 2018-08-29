@@ -73,14 +73,14 @@ def create_patch(old_txt, new_txt):
         k = kind(goto, pos)
         if k == 'd':
             n = goto[0] - pos[0]
-            patch.append(f'd{n}\n')
+            patch.append('d{}\n'.format(n))
         elif k == 'i':
             n = goto[1] - pos[1]
             lines = ''.join(new_seq[pos[1]:goto[1]])
-            patch.append(f'i{n}\n{lines}')
+            patch.append('i{}\n{}'.format(n,lines))
         elif k == 'k':
             n = goto[1] - pos[1]
-            patch.append(f'k{n}\n')
+            patch.append('k{}\n'.format(n))
         pos = goto
 
     return ''.join(patch)
@@ -117,13 +117,13 @@ def apply_patch(old_txt, patch):
             patch_c += n
         elif cmd == 'd':
             n = to_int(patch_seq[patch_c][1:-1])
-            check(old_c + n <= old_l, f'Have to delete {n} lines from {old_l} '
-            f'lines long file starting at {old_c}')
+            check(old_c + n <= old_l, 'Have to delete {} lines from {} '
+            'lines long file starting at {}'.format(n, old_l, old_c))
             old_c += n
         else:  # cmd = 'k'
             n = to_int(patch_seq[patch_c][1:-1])
-            check(old_c + n <= old_l, f'Have to keep {n} lines from {old_l} '
-            f'lines long file starting at {old_c}')
+            check(old_c + n <= old_l, 'Have to keep {} lines from {} '
+            'lines long file starting at {}'.format(n, old_l, old_c))
             new_seq.extend(old_seq[old_c:old_c+n])
             old_c += n
         patch_c += 1

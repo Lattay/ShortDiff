@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="ShortDiff",
-    version="0.1.0",
+    version="0.1.1",
     author="Theo (Lattay) Cavignac",
     author_email="theo.cavignac@gmail.com",
     description="A simple one way diff tool",
