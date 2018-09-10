@@ -1,5 +1,6 @@
 import unittest
-from __init__ import *
+from __init__ import create_patch, apply_patch
+
 
 class TestDiff(unittest.TestCase):
 
@@ -27,6 +28,7 @@ Right here"""
         patch = create_patch(a, b)
         mayb = apply_patch(a, patch)
         self.assertEqual(b, mayb)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -30,7 +30,7 @@ elif cmd == 'patch':
     with open(afile) as f:
         patch = f.read()
     if bfile:
-        with open(argv[3]) as f:
+        with open(bfile) as f:
             txta = f.read()
     else:
         from sys import stdin
