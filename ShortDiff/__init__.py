@@ -3,6 +3,31 @@
 #          distance --^     ^-- path
 
 
+class Hashed:
+    '''
+    This class represent a string with precomputed hash to speed up most
+    comparisions.
+    '''
+
+    def __init__(self, content):
+        self.content = content
+        self.hash = hash(content)
+
+    def __hash__(self):
+        return self.hash
+
+    def __str__(self):
+        return self.content
+
+    def __eq__(self, other):
+        assert isinstance(other, Hashed)
+        return self.hash == other.hash and self.content == other.content
+
+    def __neq__(self, other):
+        assert isinstance(other, Hashed)
+        return self.hash != other.hash or self.content != other.content
+
+
 def kind(goto, pos):
     n1, m1 = goto
     n2, m2 = pos
@@ -64,9 +89,9 @@ def create_patch(old_txt, new_txt):
     old_seq = old_txt.splitlines(True)
     new_seq = new_txt.splitlines(True)
 
-    old_hash = list(map(hash, old_seq))
-    new_hash = list(map(hash, new_seq))
-    dist, path = differ(old_hash, new_hash)
+    old_hashed = list(map(Hashed, old_seq))
+    new_hashed = list(map(Hashed, new_seq))
+    dist, path = differ(old_hashed, new_hashed)
 
     patch = []
     pos = (0, 0)
