@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="ShortDiff",
-    version="0.1.2",
+    version="0.1.3",
     author="Theo (Lattay) Cavignac",
     author_email="theo.cavignac@gmail.com",
     description="A simple one way diff tool",
@@ -14,10 +14,10 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/Lattay/ShortDiff",
     packages=setuptools.find_packages(),
-    classifiers=(
+    classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Intended Audience :: Information Technology",
-    ),
+    ],
 )
